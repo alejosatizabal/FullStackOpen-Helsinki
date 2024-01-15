@@ -10,18 +10,25 @@ const Content = (props) => {
   return (
     <div>
       <h1>Parts:</h1>
-        <ol>
-            <li>{props.parts.part1}, {props.numxparts.exercises1} excercises</li>
-            <li>{props.parts.part2}, {props.numxparts.exercises2} excercises</li>
-            <li>{props.parts.part3}, {props.numxparts.exercises3} excercises</li>
-        </ol>
+        <Part parts={props.parts.part1} numxparts={props.numxparts.exercises1}/>
+        <Part parts={props.parts.part2} numxparts={props.numxparts.exercises2}/>
+        <Part parts={props.parts.part3} numxparts={props.numxparts.exercises3}/>
+    </div>
+  )
+}
+
+const Part = (props) => {
+  return (
+    <div>
+      <p>{props.parts}, exercises {props.numxparts}</p>
     </div>
   )
 }
 
 const Total = (props) => {
-
-    const totalExercises = props.numExers1 + props.numExers2 + props.numExers3
+console.log(props)
+//console.log(props.numxparts)
+    const totalExercises = props.numxparts.exercises1+props.numxparts.exercises2+props.numxparts.exercises3
   return (
     <div>
       <h1>Number of exercises: {totalExercises}</h1>
@@ -38,14 +45,14 @@ const App = () => {
   const part3 = 'State of a component'
   const exercises3 = 14
 
-    var parts = {part1,part2,part3}
-    var numxparts = {exercises1,exercises2,exercises3}
+  var parts = {part1,part2,part3}
+  var numxparts = {exercises1,exercises2,exercises3}
 
   return (
     <div>
         <Header course={course}/>
         <Content parts={parts} numxparts={numxparts}/>
-        <Total numExers1={exercises1} numExers2={exercises2} numExers3={exercises3}/>
+        <Total numxparts={numxparts}/>
     </div>
   )
 }
