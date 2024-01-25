@@ -9,6 +9,8 @@ const History = (props) => {
     )
   }
 
+  //debugger
+
   return (
     <div>
       button press history: {props.allClicks.join(' ')}
