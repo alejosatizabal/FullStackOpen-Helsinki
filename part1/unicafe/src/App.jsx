@@ -20,15 +20,23 @@ const Estadisticas = (props) => {
   let puntPromedio = (props.resenas.good*1 + props.resenas.bad*-1) / totalComentarios
   let porcenPositivos = (props.resenas.good / totalComentarios) *100
 
+  //console.log("Total: " + totalComentarios)
+
+  if (totalComentarios > 0){
+    return(
+      <div>
+        <div>Good: { props.resenas.good }</div>
+        <div>Neutral: { props.resenas.neutral }</div>
+        <div>Bad: { props.resenas.bad }</div>
+        <div>Total de comentarios: {totalComentarios}</div>
+        <div>Puntuación promedio: {puntPromedio}</div>
+        <div>% comentarios positivos: {porcenPositivos} %</div>
+      </div>
+    )
+  }
+
   return(
-    <div>
-      <div>Good: { props.resenas.good }</div>
-      <div>Neutral: { props.resenas.neutral }</div>
-      <div>Bad: { props.resenas.bad }</div>
-      <div>Total de comentarios: {totalComentarios}</div>
-      <div>Puntuación promedio: {puntPromedio}</div>
-      <div>% comentarios positivos: {porcenPositivos} %</div>
-  </div>
+    <div>Sin estadisticas todavía</div>
   )
 }
 
