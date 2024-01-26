@@ -6,12 +6,26 @@ const Titulos = (props) => {
   )
 }
 
+  /*
+    Amplía tu aplicación para que muestre más estadísticas sobre los comentarios
+    recopilados: el número total de comentarios recopilados, la puntuación
+    promedio (buena: 1, neutral: 0, mala: -1) y el porcentaje de comentarios positivos.
+  */
+
 const Estadisticas = (props) => {
+
+  let totalComentarios = props.resenas.good + props.resenas.neutral + props.resenas.bad
+  let puntPromedio = (props.resenas.good*1 + props.resenas.bad*-1) / totalComentarios
+  let porcenPositivos = (props.resenas.good / totalComentarios) *100
+
   return(
     <div>
       <div>Good: { props.resenas.good }</div>
       <div>Neutral: { props.resenas.neutral }</div>
       <div>Bad: { props.resenas.bad }</div>
+      <div>Total de comentarios: {totalComentarios}</div>
+      <div>Puntuación promedio: {puntPromedio}</div>
+      <div>% comentarios positivos: {porcenPositivos} %</div>
   </div>
   )
 }
