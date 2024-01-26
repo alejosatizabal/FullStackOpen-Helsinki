@@ -12,6 +12,8 @@ const Titulos = (props) => {
     promedio (buena: 1, neutral: 0, mala: -1) y el porcentaje de comentarios positivos.
   */
 
+    // 1.8: unicafe, paso 3 (listo, desde un principio se hizo así)
+
 const Estadisticas = (props) => {
 
   let totalComentarios = props.resenas.good + props.resenas.neutral + props.resenas.bad
