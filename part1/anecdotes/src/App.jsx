@@ -20,9 +20,9 @@ const App = () => {
   // Actualización con renderizado adecuado
   const votarAnecdota = () => {
     setVotos(versionPrevia => {
-      const copy = [...versionPrevia];
-      copy[selected] += 1;
-      return copy;
+      const copy = [...versionPrevia]
+      copy[selected] += 1
+      return copy
     })
   }
 
