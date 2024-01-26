@@ -24,14 +24,16 @@ const Estadisticas = (props) => {
 
   if (totalComentarios > 0){
     return(
-      <div>
-        <StatisticLine text="Good" value={ props.resenas.good } />
-        <StatisticLine text="Neutral" value={ props.resenas.neutral } />
-        <StatisticLine text="Bad" value={ props.resenas.bad } />
-        <StatisticLine text="Total de comentarios" value={ totalComentarios } />
-        <StatisticLine text="Puntuación promedio" value={ puntPromedio } />
-        <StatisticLine text="% comentarios positivos" value={ porcenPositivos } simbolo=" %"/>
-      </div>
+      <table>
+        <tbody>
+          <StatisticLine text="Good" value={ props.resenas.good } />
+          <StatisticLine text="Neutral" value={ props.resenas.neutral } />
+          <StatisticLine text="Bad" value={ props.resenas.bad } />
+          <StatisticLine text="Total de comentarios" value={ totalComentarios } />
+          <StatisticLine text="Puntuación promedio" value={ puntPromedio } />
+          <StatisticLine text="% comentarios positivos" value={ porcenPositivos } simbolo=" %"/>
+          </tbody>
+      </table>
     )
   }
 
@@ -47,10 +49,8 @@ const Button = (props) => {
 }
 
 const StatisticLine = (props) => {
-  //text
-  //value
   return(
-    <div>{props.text}: {props.value} {props.simbolo}</div>
+    <tr><td>{props.text}:</td><td>{props.value}  {props.simbolo}</td></tr>
   )
 }
 
