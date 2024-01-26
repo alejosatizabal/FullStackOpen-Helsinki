@@ -23,15 +23,24 @@ const App = () => {
       const copy = [...versionPrevia];
       copy[selected] += 1;
       return copy;
-    });
+    })
+  }
+
+  const masVotado = () => {
+    const index = votos.findIndex((voto) => voto == Math.max( ...votos ) )
+    return {numVotos:votos[index], anecdota:anecdotes[index]}
   }
 
   return (
     <div>
+      <h1>Anecdota del Día</h1>
       <p>{anecdotes[selected]}</p>
       <p>Tiene {votos[selected]} votos</p>
       <button onClick={votarAnecdota}>Votar</button>
       <button onClick={ () => setSelected( Math.floor( Math.random() * anecdotes.length ) ) }>Siguiente anecdota</button>
+      <h1>Anecdota con mas votos</h1>
+      <p>{ masVotado().anecdota }</p>
+      <p>Tiene { masVotado().numVotos } votos</p>
     </div>
   )
 }
