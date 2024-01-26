@@ -12,12 +12,26 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
+  const votosEnCero = new Array(anecdotes.length).fill(0)
+
   const [selected, setSelected] = useState(0)
+  const [votos, setVotos] = useState(votosEnCero)
+
+  // Actualización con renderizado adecuado
+  const votarAnecdota = () => {
+    setVotos(versionPrevia => {
+      const copy = [...versionPrevia];
+      copy[selected] += 1;
+      return copy;
+    });
+  }
 
   return (
     <div>
       <p>{anecdotes[selected]}</p>
-      <button onClick={ () => setSelected( Math.floor( Math.random() * anecdotes.length ) ) }>Random</button>
+      <p>Tiene {votos[selected]} votos</p>
+      <button onClick={votarAnecdota}>Votar</button>
+      <button onClick={ () => setSelected( Math.floor( Math.random() * anecdotes.length ) ) }>Siguiente anecdota</button>
     </div>
   )
 }
