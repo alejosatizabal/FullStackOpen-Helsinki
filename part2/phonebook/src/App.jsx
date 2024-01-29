@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import Filter from './components/Filter'
+import PersonForm from './components/PersonForm'
+import Persons from './components/Persons'
 
 const App = () => {
   const [ persons, setPersons ] = useState([
@@ -13,6 +16,7 @@ const App = () => {
   const [ newFilter, setNewFilter ] = useState('')
   const [mostrarFiltrado, setNewMostrarFiltrado] = useState(false)
 
+  /*
   const addPerson = (event) => {
     event.preventDefault()
 
@@ -29,14 +33,18 @@ const App = () => {
     }
     setNewName('')
   }
+  */
 
   //console.log( persons.map(person => person.name) );
   //console.log( (persons.map(person => person.name)).includes('Hola') );
 
+  /*
   const verificarUnico = (nombreIngresado) => {
     return !((persons.map(person => person.name)).includes(nombreIngresado))
   }
+  */
 
+  /*
   const handleNameChange = (event) => {
     //console.log(event.target.value),
     setNewName(event.target.value)
@@ -46,7 +54,9 @@ const App = () => {
     //console.log(event.target.value),
     setNewNumber(event.target.value)
   }
+  */
 
+  /*
   const handleFilterChange = (event) => {
     //console.log(event.target.value),
     setNewFilter(event.target.value)
@@ -62,21 +72,40 @@ const App = () => {
 
     )
   }
-
   const filtrar = (entrada) =>{
     //setPersons( persons.filter( (persona) => ((persona.name).toLocaleLowerCase()).includes( entrada.toLocaleLowerCase() ) ) )
     return persons.filter( (persona) => ((persona.name).toLocaleLowerCase()).includes( entrada.toLocaleLowerCase() ) )
   }
+  */
 
   return (
     <div>
       <h2>Phonebook</h2>
+      <Filter
+        value={newFilter}
+        setNewFilter={setNewFilter}
+        setPersonsFiltrado={setPersonsFiltrado}
+        persons={persons}
+      />
+      {/*
       <form>
         <div>
           Filtrar lista de personas <input value={newFilter} onChange={handleFilterChange} />
         </div>
       </form>
+      */}
+
       <h2>Adicionar nueva persona</h2>
+
+      <PersonForm
+        newName={newName}
+        setNewName={setNewName}
+        newNumber={newNumber}
+        setPersons={setPersons}
+        persons={persons}
+        setNewNumber={setNewNumber}
+      />
+      {/*
       <form  onSubmit={addPerson}>
         <div>
           Name: <input value={newName} onChange={handleNameChange} />
@@ -88,12 +117,16 @@ const App = () => {
           <button type="submit">add</button>
         </div>
       </form>
+      */}
       <h2>Numbers</h2>
+      <Persons persons={personsFiltrado} />
+      {/*
       {personsFiltrado.map(
         persona => (
           <div key={persona.name}>{persona.name}: {persona.number}</div>
         )
       )}
+      */}
 
       {/* TEMPORAL */}
       <div>debug: {newName}</div>
