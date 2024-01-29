@@ -3,10 +3,6 @@ const Filter = ({value, setNewFilter, setPersonsFiltrado, persons}) => {
     const handleFilterChange = (event) => {
         //console.log(event.target.value),
         setNewFilter(event.target.value)
-        //console.log( persons.filter( (persona) => ((persona.name).toLocaleLowerCase()).includes( newFilter.toLocaleLowerCase() ) ) ); //  
-        //setPersons( persons.filter( (persona) => ((persona.name).toLocaleLowerCase()).includes( newFilter.toLocaleLowerCase() ) ) )
-        //setPersons( persons.filter( (persona) => ((persona.name).toLocaleLowerCase()).includes( (event.target.value).toLocaleLowerCase() ) ) )
-        //filtrar(event.target.value)
         setPersonsFiltrado(personas =>{
           const copy = filtrar(event.target.value)
           console.log(copy);
