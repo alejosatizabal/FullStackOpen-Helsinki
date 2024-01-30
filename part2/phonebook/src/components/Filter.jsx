@@ -1,5 +1,7 @@
 const Filter = ({value, setNewFilter, setPersonsFiltrado, persons}) => {
 
+    //console.log("persons(Filter): ", persons);
+
     const handleFilterChange = (event) => {
         //console.log(event.target.value),
         setNewFilter(event.target.value)
