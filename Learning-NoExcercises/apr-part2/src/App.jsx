@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Note from './components/Note'
+import noteService from './services/notes'
 
 //const App = ({ notes }) => {
 const App = () => {
@@ -10,15 +11,15 @@ const App = () => {
   const [showAll, setShowAll] = useState(true)
 
   useEffect(() => {
-    console.log('effect') 
+    // console.log('effect')
     axios
       .get('http://localhost:3001/notes')
       .then(response => {
-        console.log('promise fulfilled')
+        // console.log('promise fulfilled')
         setNotes(response.data)
       })
     }, [])
-    console.log('render', notes.length, 'notes')
+    // console.log('render', notes.length, 'notes')
 
     const addNote = (event) => {
       event.preventDefault()
@@ -27,13 +28,35 @@ const App = () => {
         important: Math.random() > 0.5,
         id: notes.length + 1,
       }
+
+      axios
+        .post('http://localhost:3001/notes', noteObject)
+        .then(response => {
+          console.log(response)
+          setNotes(notes.concat(response.data))
+          setNewNote('')
+        })
   
-      setNotes(notes.concat(noteObject))
-      setNewNote('')
+      //setNotes(notes.concat(noteObject))
+      //setNewNote('')
     }
   
     const handleNoteChange = (event) => {
       setNewNote(event.target.value)
+    }
+
+    const toggleImportanceOf = (id) => {
+      //console.log('importance of ' + id + ' needs to be toggled')
+      const url = `http://localhost:3001/notes/${id}`
+      console.log('url :>> ', url);
+      const note = notes.find(n => n.id === id)
+      console.log('note :>> ', note);
+      const changedNote = { ...note, important: !note.important }
+      console.log('changedNote :>> ', changedNote);
+
+      axios.put(url, changedNote).then(response => {
+        setNotes(notes.map(note => note.id !== id ? note : response.data))
+      })
     }
   
     const notesToShow = showAll
@@ -51,7 +74,11 @@ const App = () => {
       <ul>
         <ul>
           {notesToShow.map(note => 
-            <Note key={note.id} note={note} />
+            <Note
+              key={note.id}
+              note={note}
+              toggleImportance={() => toggleImportanceOf(note.id)}
+            />
           )}
         </ul>
       </ul>
