@@ -34,6 +34,9 @@ const App = () => {
         })
       }, [])
       // console.log('render', notes.length, 'notes')
+      
+      console.log('persons App :>> ', persons);
+      console.log('personsFiltrado App :>> ', personsFiltrado);
 
   return (
     <div>
@@ -60,7 +63,13 @@ const App = () => {
 
       <h2>Numbers</h2>
 
-      <Persons persons={ (newFilter == '') ? persons : personsFiltrado } />
+      <Persons
+        newFilter={newFilter}
+        persons={persons}
+        personsFiltrado={personsFiltrado}
+        setPersons={setPersons}
+        setPersonsFiltrado={setPersonsFiltrado}
+      />
 
     </div>
   )

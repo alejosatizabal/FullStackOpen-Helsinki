@@ -22,6 +22,15 @@ const update = (id, newObject) => {
   return request.then(response => response.data)
 }
 
+const deleteP = (id) => {
+  //return axios.put(`${baseUrl}/${id}`, newObject)
+  console.log('persons: delete');
+  const request = axios.delete(`${baseUrl}/${id}`)
+  //const temp = request.then(response => (response.data, console.log(response.data.id)))
+  //console.log( temp );
+  return request.then(response => response.data)
+}
+
 // Ambas formas de exportar son válidas
- export default { getAll, create, update }
-// export default { getAll: getAll, create: create,  update: update }
+ export default { getAll, create, update, deleteP }
+// export default { getAll: getAll, create: create,  update: update, deleteP: deleteP }

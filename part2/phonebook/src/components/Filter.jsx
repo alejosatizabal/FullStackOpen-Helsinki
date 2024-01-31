@@ -3,13 +3,17 @@ const Filter = ({value, setNewFilter, setPersonsFiltrado, persons}) => {
     //console.log("persons(Filter): ", persons);
 
     const handleFilterChange = (event) => {
-        //console.log(event.target.value),
-        setNewFilter(event.target.value)
-        setPersonsFiltrado(personas =>{
-          const copy = filtrar(event.target.value)
-          console.log(copy);
-          return copy
-        })
+        //console.log(event.target.value)
+        if( true ){
+            setNewFilter(event.target.value)
+            setPersonsFiltrado(personas =>{
+            const copy = filtrar(event.target.value)
+            console.log(copy);
+            return copy
+            })
+        }else{
+            
+        }
     }
 
     const filtrar = (entrada) =>{
