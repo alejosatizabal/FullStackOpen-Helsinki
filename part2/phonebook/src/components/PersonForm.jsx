@@ -1,23 +1,51 @@
+import personsService from '../services/persons'
+
 const PersonForm = ({newName, setNewName, newNumber, setNewNumber, setPersons, persons, setPersonsFiltrado}) => {
 
     const addPerson = (event) => {
         event.preventDefault()
     
         if( verificarUnico(newName) ){
+          // const noteObject = {
+          //   name: newName,
+          //   number: newNumber,
+          //   //id: notes.length + 1,
+          // }
+          // setPersons(persons.concat(noteObject))
+          // setPersonsFiltrado(persons.concat(noteObject))
+          // setNewNumber('')
+
           const noteObject = {
             name: newName,
             number: newNumber,
-            //id: notes.length + 1,
           }
-          setPersons(persons.concat(noteObject))
-          setPersonsFiltrado(persons.concat(noteObject))
-          setNewNumber('')
+          personsService
+          .create(noteObject)
+          .then(returnedPerson => {
+            setPersons(persons.concat(returnedPerson))
+            setPersonsFiltrado(persons.concat(returnedPerson))
+            setNewNumber('')
+          })
         }else{
           alert(`${newName} ya es encuentra en la lista telefonica`)
           setNewNumber('')
         }
         setNewName('')
     }
+    const addNote = (event) => {
+      event.preventDefault()
+      const noteObject = {
+        content: newNote,
+        important: Math.random() > 0.5,
+      }
+      noteService
+        .create(noteObject)
+        .then(returnedNote => {
+          setNotes(notes.concat(returnedNote))
+          setNewNote('')
+        })
+    }
+
     const verificarUnico = (nombreIngresado) => {
         return !((persons.map(person => person.name)).includes(nombreIngresado))
     }
