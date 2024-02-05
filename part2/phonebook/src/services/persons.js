@@ -1,30 +1,31 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:3001/persons'
+const consoleLog = false
 
 const getAll = () => {
   //return axios.get(baseUrl)
-  console.log('persons: getAll');
+  consoleLog ? console.log('persons.js: getAll') : null
   const request = axios.get(baseUrl)
   return request.then(response => response.data)
 }
 
 const create = newObject => {
   //return axios.post(baseUrl, newObject)
-  console.log('persons: create');
+  consoleLog ? console.log('persons.js: create') : null
   const request = axios.post(baseUrl, newObject)
   return request.then(response => response.data)
 }
 
 const update = (id, newObject) => {
   //return axios.put(`${baseUrl}/${id}`, newObject)
-  console.log('persons: update');
+  consoleLog ? console.log('persons.js: update') : null
   const request = axios.put(`${baseUrl}/${id}`, newObject)
   return request.then(response => response.data)
 }
 
 const deleteP = (id) => {
   //return axios.put(`${baseUrl}/${id}`, newObject)
-  console.log('persons: delete');
+  consoleLog ? console.log('persons.js: delete') : null
   const request = axios.delete(`${baseUrl}/${id}`)
   //const temp = request.then(response => (response.data, console.log(response.data.id)))
   //console.log( temp );

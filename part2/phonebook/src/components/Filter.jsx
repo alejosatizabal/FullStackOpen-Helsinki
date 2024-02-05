@@ -8,7 +8,7 @@ const Filter = ({value, setNewFilter, setPersonsFiltrado, persons}) => {
             setNewFilter(event.target.value)
             setPersonsFiltrado(personas =>{
             const copy = filtrar(event.target.value)
-            console.log(copy);
+            // console.log(copy);
             return copy
             })
         }else{

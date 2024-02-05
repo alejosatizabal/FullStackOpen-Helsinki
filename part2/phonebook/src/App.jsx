@@ -12,31 +12,13 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
 
-  // useEffect(() => {
-  //   console.log('effect')
-  //   axios
-  //     .get('http://localhost:3001/persons')
-  //     .then(response => {
-  //       setPersons( () => {
-  //         const copy = response.data
-  //         return copy
-  //       })
-  //     })
-  //   }, [])
     useEffect(() => {
-      console.log('effect trayendo con persons.js')
       personService
         .getAll()
         .then(initialPersons => {
-          //setNotes(response.data)
-          console.log('initialPersons :>> ', initialPersons);
           setPersons(initialPersons)
         })
       }, [])
-      // console.log('render', notes.length, 'notes')
-      
-      console.log('persons App :>> ', persons);
-      console.log('personsFiltrado App :>> ', personsFiltrado);
 
   return (
     <div>
@@ -55,9 +37,10 @@ const App = () => {
         newName={newName}
         setNewName={setNewName}
         newNumber={newNumber}
-        setPersons={setPersons}
         persons={persons}
+        setPersons={setPersons}
         setNewNumber={setNewNumber}
+        personsFiltrado={personsFiltrado}
         setPersonsFiltrado={setPersonsFiltrado}
       />
 
