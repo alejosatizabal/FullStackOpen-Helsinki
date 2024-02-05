@@ -1,6 +1,16 @@
 import personsService from '../services/persons'
 
-const PersonForm = ({newName, setNewName, newNumber, setNewNumber, setPersons, persons, personsFiltrado, setPersonsFiltrado}) => {
+const PersonForm = ({
+    newName,
+    setNewName,
+    newNumber,
+    setNewNumber,
+    setPersons,
+    persons,
+    personsFiltrado,
+    setPersonsFiltrado,
+    setMensaje,
+    setTipoMensaje}) => {
 
     const addPerson = (event) => {
         event.preventDefault()
@@ -35,6 +45,9 @@ const PersonForm = ({newName, setNewName, newNumber, setNewNumber, setPersons, p
             setPersons(persons.concat(returnedPerson))
             setPersonsFiltrado(persons.concat(returnedPerson))
             setNewNumber('')
+            setMensaje(`Se agregó '${returnedPerson.name}' a la lista`)
+            setTipoMensaje('notifi')
+            setTimeout(() => { setTipoMensaje(null) }, 5000)
         })
     }
 
@@ -43,9 +56,13 @@ const PersonForm = ({newName, setNewName, newNumber, setNewNumber, setPersons, p
         const changedPerson = { ...person, number: newNumber }
         personsService
         .update(changedPerson.id, changedPerson)
-        .then(returnedPerson => { 
+        .then(returnedPerson => {
             setPersons(persons.map(person => person.id !== changedPerson.id ? person : returnedPerson))
             setPersonsFiltrado(personsFiltrado.map(person => person.id !== changedPerson.id ? person : returnedPerson))
+
+            setMensaje(`Se actualizó el número de '${returnedPerson.name}'`)
+            setTipoMensaje('notifi')
+            setTimeout(() => { setTipoMensaje(null) }, 5000)
         })
         .catch(error => {              })
         setNewNumber('')
