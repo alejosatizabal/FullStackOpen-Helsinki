@@ -4,8 +4,6 @@ const Buscar = ({ countries, setCountriesShow, buscarPais, setBuscarPais }) => {
     const handleFilterChange = (event) => {
         setBuscarPais(event.target.value)
         if( event.target.value != ''){
-            //console.log(event.target.value)
-            //setBuscarPais(event.target.value)
             setCountriesShow(paises =>{
                 const copy = filtrar(event.target.value)
                 return copy
@@ -16,7 +14,6 @@ const Buscar = ({ countries, setCountriesShow, buscarPais, setBuscarPais }) => {
     }
 
     const filtrar = (entrada) =>{
-        //setPersons( persons.filter( (persona) => ((persona.name).toLocaleLowerCase()).includes( entrada.toLocaleLowerCase() ) ) )
         return countries.filter( (country) => ((country.name.common).toLocaleLowerCase()).includes( entrada.toLocaleLowerCase() ) )
     }
 

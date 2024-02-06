@@ -1,11 +1,11 @@
+import { useEffect, useState } from "react";
+import countries from "../services/countries";
+import Clima from "./Clima";
 
 const Pais = ({ countriesShow }) => {
 
     if(countriesShow.length == 1){
-        console.log('countriesShow (Pais):>> ', countriesShow);
         const unPais = countriesShow[0]
-        console.log('unPais :>> ', unPais);
-
         const idiomas = Object.values(unPais.languages)
 
         return (
@@ -21,6 +21,11 @@ const Pais = ({ countriesShow }) => {
                     )}
                 </ul>
                 <img src={unPais.flags.png}/>
+                <h2>Clima en {unPais.capital}</h2>
+                <Clima
+                    latitud={unPais.capitalInfo.latlng[0]}
+                    longitud={unPais.capitalInfo.latlng[1]}
+                />
             </div>
         )
     }

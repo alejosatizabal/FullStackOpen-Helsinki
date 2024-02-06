@@ -3,7 +3,7 @@ const Paises = ({ countriesShow, setCountriesShow, setBuscarPais }) => {
 
     const numPaises = countriesShow.length
 
-    console.log('numPaises (Paises) :>> ', numPaises);
+    //console.log('numPaises (Paises) :>> ', numPaises);
 
     const mostrarPais = (pais) => {
         setCountriesShow([pais])
