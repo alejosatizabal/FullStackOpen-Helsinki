@@ -1,37 +1,42 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+//import './App.css'
+import countriesService from './services/countries'
+import Buscar from './components/Buscar'
+import Pais from './components/Pais'
+import Paises from './components/Paises'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [countries, setCountries] = useState([])
+  const [ countries, setCountries ] = useState([])
+  const [ countriesShow, setCountriesShow ] = useState([])
+  const [ buscarPais, setBuscarPais ] = useState('')
+  const [ numPaises, setNumPaises ] = useState(0)
 
   useEffect(() => {
     //console('effect')
-    axios
-      .get('https://restcountries.com/v3.1/all')
-      .then(response => {
-        //console('promise fulfilled')
-        //console("response.data: ", response.data);
-        //setPersons(response.data)
-        setCountries( () => {
-          const copy = response.data
-          return copy
-        })
-        //console("countries: ", countries);
-      })
-    }, [])
-
-    //console("countries: ", countries);
+    countriesService
+    .getAll()
+    .then( initialCountries => {
+      setCountries(initialCountries)
+    })
+  }, [])
 
   return (
     <div>
-      {countries.map(countrie => (
-        <div key={countrie.name.common}>
-          {countrie.name.common} ___ {countrie.name.official}
-        </div>))}
+      <Buscar
+        countries={countries}
+        setCountriesShow={setCountriesShow}
+        buscarPais={buscarPais}
+        setBuscarPais={setBuscarPais}
+        setNumPaises={setNumPaises}
+      />
+      <Pais
+        numPaises={numPaises}
+        countriesShow={countriesShow}
+      />
+      <Paises
+        numPaises={numPaises}
+        countriesShow={countriesShow}
+      />
       </div>
   )
 }
