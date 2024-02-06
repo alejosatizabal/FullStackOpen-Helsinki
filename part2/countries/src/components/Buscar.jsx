@@ -1,15 +1,18 @@
 
-const Buscar = ({ countries, setCountriesShow, buscarPais, setBuscarPais, setNumPaises }) => {
+const Buscar = ({ countries, setCountriesShow, buscarPais, setBuscarPais }) => {
 
     const handleFilterChange = (event) => {
-        //console.log(event.target.value)
         setBuscarPais(event.target.value)
-        setCountriesShow(paises =>{
-            const copy = filtrar(event.target.value)
-            // console.log(copy);
-            event.target.value == '' ? setNumPaises(0) : setNumPaises(copy.length)
-            return copy
-        })
+        if( event.target.value != ''){
+            //console.log(event.target.value)
+            //setBuscarPais(event.target.value)
+            setCountriesShow(paises =>{
+                const copy = filtrar(event.target.value)
+                return copy
+            })
+        }else{
+            setCountriesShow([])
+        }
     }
 
     const filtrar = (entrada) =>{
@@ -21,7 +24,7 @@ const Buscar = ({ countries, setCountriesShow, buscarPais, setBuscarPais, setNum
         <div>
             <form>
             <div>
-            Encontrar paises <input /*value={value}*/ onChange={handleFilterChange} />
+            Encontrar paises <input value={buscarPais} onChange={handleFilterChange} />
             </div>
       </form>
         </div>

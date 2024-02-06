@@ -9,7 +9,6 @@ function App() {
   const [ countries, setCountries ] = useState([])
   const [ countriesShow, setCountriesShow ] = useState([])
   const [ buscarPais, setBuscarPais ] = useState('')
-  const [ numPaises, setNumPaises ] = useState(0)
 
   useEffect(() => {
     //console('effect')
@@ -27,15 +26,14 @@ function App() {
         setCountriesShow={setCountriesShow}
         buscarPais={buscarPais}
         setBuscarPais={setBuscarPais}
-        setNumPaises={setNumPaises}
       />
       <Pais
-        numPaises={numPaises}
         countriesShow={countriesShow}
       />
       <Paises
-        numPaises={numPaises}
         countriesShow={countriesShow}
+        setCountriesShow={setCountriesShow}
+        setBuscarPais={setBuscarPais}
       />
       </div>
   )

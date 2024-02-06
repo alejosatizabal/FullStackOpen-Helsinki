@@ -1,32 +1,12 @@
 
-const Pais = ({ numPaises, countriesShow }) => {
+const Pais = ({ countriesShow }) => {
 
-    console.log('numPaises (Pais):>> ', numPaises);
-
-    if(numPaises == 1){
+    if(countriesShow.length == 1){
+        console.log('countriesShow (Pais):>> ', countriesShow);
         const unPais = countriesShow[0]
         console.log('unPais :>> ', unPais);
-        
-        console.log('idiomas: ', Object.values(unPais.languages))
-        
-        /*
-            console.log('unPais.languages :>> ', 
-            (unPais.languages).map(
-                idioma => (idioma)
-            ));
-        */
-
-        /*
-        {unPais.languages.map(idioma => (
-                    <div key={idioma}>
-                        {idioma}
-                    </div>
-                ))}
-        */
 
         const idiomas = Object.values(unPais.languages)
-
-        
 
         return (
             <div>
@@ -36,7 +16,7 @@ const Pais = ({ numPaises, countriesShow }) => {
                 <h3>Idiomas</h3>
                 <ul>
                     {idiomas.map( idioma => (
-                        <li>{idioma}</li>
+                        <li key={idioma}>{idioma}</li>
                     )
                     )}
                 </ul>
