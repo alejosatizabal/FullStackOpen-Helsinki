@@ -49,6 +49,13 @@ const PersonForm = ({
             setTipoMensaje('notifi')
             setTimeout(() => { setTipoMensaje(null) }, 5000)
         })
+        .catch(error => {
+            setMensaje(`'${changedPerson.name}' was already removed from server`)
+            setTipoMensaje('error')
+            setPersons(persons.filter(person => person.name !== newName))
+            setTimeout(() => { setTipoMensaje(null) }, 5000)
+
+        })
     }
 
     const actualizarPersona = () => {
@@ -59,12 +66,16 @@ const PersonForm = ({
         .then(returnedPerson => {
             setPersons(persons.map(person => person.id !== changedPerson.id ? person : returnedPerson))
             setPersonsFiltrado(personsFiltrado.map(person => person.id !== changedPerson.id ? person : returnedPerson))
-
             setMensaje(`Se actualizó el número de '${returnedPerson.name}'`)
             setTipoMensaje('notifi')
             setTimeout(() => { setTipoMensaje(null) }, 5000)
         })
-        .catch(error => {              })
+        .catch(error => {
+            setMensaje(`'${changedPerson.name}' was already removed from server`)
+            setTipoMensaje('error')
+            setPersons(persons.filter(person => person.name !== newName))
+            setTimeout(() => { setTipoMensaje(null) }, 5000)
+        })
         setNewNumber('')
     }
 
