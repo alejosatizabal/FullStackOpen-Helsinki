@@ -1,6 +1,7 @@
 import axios from 'axios'
 //const baseUrl = 'http://localhost:3001/notes' // Con Json-server
-const baseUrl = 'http://localhost:3001/api/notes' // Con BackEnd Salen
+//const baseUrl = 'http://localhost:3001/api/notes' // Con BackEnd Salen
+const baseUrl = '/api/notes' // Cuando tengo Back y Front en la misma carpeta, para desplegarlos
 
 const getAll = () => {
   //return axios.get(baseUrl)
