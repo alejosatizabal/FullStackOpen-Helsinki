@@ -6,6 +6,8 @@ const app = express()
 const cors = require('cors')
 app.use(cors())
 
+app.use(express.static('dist')) // Para que el BackEnd redireccione a 'dist', el Front build
+
 app.use(express.json()) // Para hacer el POST
 
 /* Servidor1 Básico - Hola mundo*/
