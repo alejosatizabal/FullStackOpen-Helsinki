@@ -3,6 +3,9 @@
 const express = require('express')
 const app = express()
 
+const cors = require('cors')
+app.use(cors())
+
 app.use(express.json()) // Para hacer el POST
 
 /* Servidor1 Básico - Hola mundo*/
@@ -114,7 +117,8 @@ app.post('/api/notes', (request, response) => {
   response.json(note)
 })
 
-const PORT = 3001
+//const PORT = 3001 // Se usa para localhost
+const PORT = process.env.PORT || 3001 // Para desplegar en Internet
 
 /* Con servidor2 - sin express, aunque funciona con Servidor3 */
 // app.listen(PORT)
