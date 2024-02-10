@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/notes'
+//const baseUrl = 'http://localhost:3001/notes' // Con Json-server
+const baseUrl = 'http://localhost:3001/api/notes' // Con BackEnd Salen
 
 const getAll = () => {
   //return axios.get(baseUrl)
