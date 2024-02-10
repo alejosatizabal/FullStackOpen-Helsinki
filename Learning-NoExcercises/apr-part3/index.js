@@ -49,9 +49,9 @@ app.get('/favicon.ico', (req, res) => {
 // })
 
 /* Servidor3 con express */
-app.get('/', (request, response) => {
-    response.send('<h1>Hello World!</h1>')
-})  
+// app.get('/', (request, response) => {
+//     response.send('<h1>Hello World!</h1>')
+// })
 app.get('/api/notes', (request, response) => {
     response.json(notes)
 })
