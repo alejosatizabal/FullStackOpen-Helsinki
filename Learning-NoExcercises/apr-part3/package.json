@@ -14,7 +14,10 @@
     "//start": "echo 'Comentario: Agregado despues de _npm init_'",
     "dev": "nodemon index.js",
     "//dev": "echo 'Comentario: Agregado despues de instalar _npm nodemon_'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "//ORIGINALbuild:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
+    "build:ui": "rm -rf dist && cd ../apr-part2/ && npm run build && cp -r dist ../apr-part3/",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
   },
   "scripts-comments": {
     "start": "Comentario: Agregado despues de 'npm init'"
