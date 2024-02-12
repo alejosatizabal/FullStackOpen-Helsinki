@@ -7,6 +7,7 @@ const Persons = ({newFilter, persons, personsFiltrado, setPersons, setPersonsFil
             personsService
             .deleteP( id )
             .then(personaEliminada => {
+                console.log('personaEliminada FrontEnd :>> ', personaEliminada);
                 const personas = persons.filter(
                     person => person.id != personaEliminada.id
                 )
