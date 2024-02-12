@@ -1,6 +1,7 @@
 import axios from 'axios'
 //const baseUrl = 'http://localhost:3001/persons' // Usando json-server
-const baseUrl = 'http://localhost:3001/api/persons'
+//const baseUrl = 'http://localhost:3001/api/persons' // Funcionando con BackEnd Local
+const baseUrl = '/api/persons' // Para desplegar en Render.com
 const consoleLog = false
 
 const getAll = () => {
