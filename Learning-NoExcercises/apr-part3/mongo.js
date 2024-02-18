@@ -40,7 +40,23 @@ const note = new Note({
   important: true,
 })
 
-note.save().then(result => {
-  console.log('note saved!')
+// note.save().then(result => {
+//   console.log('note saved!')
+//   mongoose.connection.close()
+// })
+
+/* Encuentra todas las notas, el parametro {} vacío implica que no hay criterio de busqueda */
+// Note.find({}).then(result => {
+//   result.forEach(note => {
+//     console.log(note)
+//   })
+//   mongoose.connection.close()
+// })
+
+/* Encuentra todas las notas donde 'important' es 'true' */
+Note.find({ important: true }).then(result => {
+  result.forEach(note => {
+    console.log(note)
+  })
   mongoose.connection.close()
 })
