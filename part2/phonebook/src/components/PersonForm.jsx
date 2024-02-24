@@ -29,7 +29,6 @@ const PersonForm = ({
             }else{
                 setNewNumber('')
             }
-            setNewName('')
         })
         .catch(error => {        })
     }
@@ -45,22 +44,34 @@ const PersonForm = ({
             setPersons(persons.concat(returnedPerson))
             setPersonsFiltrado(persons.concat(returnedPerson))
             setNewNumber('')
+            setNewName('')
             setMensaje(`Se agregó '${returnedPerson.name}' a la lista`)
             setTipoMensaje('notifi')
             setTimeout(() => { setTipoMensaje(null) }, 5000)
         })
         .catch(error => {
-            if (error.name == "AxiosError"){
-                console.log('error.response.data.error :>> ', error.response.data.error);
+            //console.log('error.name :>> ', error.name);
+            //console.log('error.response.data.error :>> ', error.response.data.error);
+            console.log('tipeOf(error.response.data.error) :>> ', typeof(error.response.data.error));
+            if ( (error.response.data.error).includes('name') ){
+                //console.log('error.response.data.error :>> ', error.response.data.error);
+                setMensaje(error.response.data.error)
+                setTipoMensaje('error')
+                setTimeout(() => { setTipoMensaje(null) }, 5000)
+                setNewName('')
+            } else if ( (error.response.data.error).includes('number')){
+                //console.log('error.response.data.error :>> ', error.response.data.error);
                 setMensaje(error.response.data.error)
                 setTipoMensaje('error')
                 setTimeout(() => { setTipoMensaje(null) }, 5000)
                 setNewNumber('')
             }else {
-                setMensaje(`'${changedPerson.name}' was already removed from server`)
+                //setMensaje(`'${changedPerson.name}' was already removed from server`)
+                setMensaje('Person was already removed from server')
                 setTipoMensaje('error')
                 setPersons(persons.filter(person => person.name !== newName))
                 setNewNumber('')
+                setNewName('')
                 setTimeout(() => { setTipoMensaje(null) }, 5000)
             }
         })
@@ -76,15 +87,29 @@ const PersonForm = ({
             setPersonsFiltrado(personsFiltrado.map(person => person.id !== changedPerson.id ? person : returnedPerson))
             setMensaje(`Se actualizó el número de '${returnedPerson.name}'`)
             setTipoMensaje('notifi')
+            setNewNumber('')
+            setNewName('')
             setTimeout(() => { setTipoMensaje(null) }, 5000)
         })
         .catch(error => {
-            setMensaje(`'${changedPerson.name}' was already removed from server`)
-            setTipoMensaje('error')
-            setPersons(persons.filter(person => person.name !== newName))
-            setTimeout(() => { setTipoMensaje(null) }, 5000)
+            console.log('tipeOf(error.response.data.error) :>> ', typeof(error.response.data.error));
+            if ( (error.response.data.error).includes('number')){
+                //console.log('error.response.data.error :>> ', error.response.data.error);
+                setMensaje(error.response.data.error)
+                setTipoMensaje('error')
+                setTimeout(() => { setTipoMensaje(null) }, 5000)
+                setNewNumber('')
+            }else {
+                //setMensaje(`'${changedPerson.name}' was already removed from server`)
+                setMensaje('Person was already removed from server')
+                setTipoMensaje('error')
+                setPersons(persons.filter(person => person.name !== newName))
+                setNewNumber('')
+                setNewName('')
+                setTimeout(() => { setTipoMensaje(null) }, 5000)
+            }
         })
-        setNewNumber('')
+        
     }
 
     const handleNameChange = (event) => {
