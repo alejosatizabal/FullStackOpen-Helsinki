@@ -50,11 +50,19 @@ const PersonForm = ({
             setTimeout(() => { setTipoMensaje(null) }, 5000)
         })
         .catch(error => {
-            setMensaje(`'${changedPerson.name}' was already removed from server`)
-            setTipoMensaje('error')
-            setPersons(persons.filter(person => person.name !== newName))
-            setTimeout(() => { setTipoMensaje(null) }, 5000)
-
+            if (error.name == "AxiosError"){
+                console.log('error.response.data.error :>> ', error.response.data.error);
+                setMensaje(error.response.data.error)
+                setTipoMensaje('error')
+                setTimeout(() => { setTipoMensaje(null) }, 5000)
+                setNewNumber('')
+            }else {
+                setMensaje(`'${changedPerson.name}' was already removed from server`)
+                setTipoMensaje('error')
+                setPersons(persons.filter(person => person.name !== newName))
+                setNewNumber('')
+                setTimeout(() => { setTipoMensaje(null) }, 5000)
+            }
         })
     }
 
